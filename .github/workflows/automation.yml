@@ -1,0 +1,27 @@
+name: OpenDK CI
+
+on:
+  push:
+    branches: [master]
+
+jobs:
+
+  deploy:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        php-version: [7.4.33]
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use PHP ${{ matrix.node-version }}
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.IP }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          port: ${{ secrets.PORT }}
+          script: |
+            cd /home/u846397917/domains/kecamatanbone.com/opendk
+            git pull
