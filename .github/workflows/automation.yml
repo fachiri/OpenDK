@@ -9,13 +9,16 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        php-version: [7.4.33]
-
     steps:
-      - uses: actions/checkout@v2
-      - name: Use PHP ${{ matrix.node-version }}
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 7.4.33
+
+      - name: Run Commands
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.IP }}
