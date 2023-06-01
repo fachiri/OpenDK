@@ -121,6 +121,28 @@ desired effect
                 $(this).remove();
             });
         }, 5000);
+
+        $(document).on('click', '#run-queue-2', function(e) {
+            $.ajax({
+                type: "GET",
+                url: "{{ URL('setting/info-sistem/queuelisten') }}",
+                dataType: "Json"
+            });
+        });
+
+        $(document)
+        .ajaxStart(function () {
+            Swal.showLoading()
+        })
+        .ajaxStop(function () {
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'Perintah berhasil dijalankan',
+                showConfirmButton: false,
+                timer: 1500
+            })
+    });
     });
 </script>
 </body>

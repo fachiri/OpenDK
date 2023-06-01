@@ -49,6 +49,11 @@
         <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
                 <li>
+                    <a id="run-queue-2">
+                        <i class="fa fa-refresh fa-lg" title="Refresh"></i>
+                    </a>
+                </li>
+                <li>
                     <a href={{ route('surat.permohonan') }}>
                         <i class="fa fa-envelope-o fa-lg" title="Permohonan Surat"></i>&nbsp;
                         <span class="badge badge-notif">{{ App\Models\Surat::permohonan()->count() > 0 ? App\Models\Surat::permohonan()->count() : '' }}</span>
@@ -100,3 +105,5 @@
     </nav>
     @endif
 </header>
+
+@include('partials.asset_sweetalert')
